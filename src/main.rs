@@ -55,5 +55,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 		},
 	});
 
+	tokio::fs::write("output.json", full_json.to_string()).await
+		.expect("Cannot write to a file");
+
 	Ok(())
 }
