@@ -27,5 +27,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 		panic!("No such repository {branch_b_name}.\nAvailable repos: {available_repos:?}");
 	}
 
+	let branch_a = repo_comparator::fetch_branch(&branch_a_name).await;
+	let branch_b = repo_comparator::fetch_branch(&branch_b_name).await;
+
 	Ok(())
 }
