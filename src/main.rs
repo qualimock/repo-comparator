@@ -1,4 +1,5 @@
 use std::env;
+use repo_comparator::repo_comparator;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
