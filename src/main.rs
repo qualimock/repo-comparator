@@ -30,5 +30,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 	let branch_a = repo_comparator::fetch_branch(&branch_a_name).await;
 	let branch_b = repo_comparator::fetch_branch(&branch_b_name).await;
 
+	let packages_a = repo_comparator::collect_packages(branch_a.clone());
+	let packages_b = repo_comparator::collect_packages(branch_b.clone());
+
+	let (in_a_not_in_b, in_b_not_in_a) = repo_comparator::compare_branches(&packages_a, &packages_b);
+	let newer_packages = repo_comparator::compare_versions(&packages_a, &packages_b);
+
+	let in_a_not_in_b_json = repo_comparator::packages_to_json(&in_a_not_in_b);
+	let in_b_not_in_a_json = repo_comparator::packages_to_json(&in_b_not_in_a);
+	let newer_packages_json = repo_comparator::packages_to_json(&newer_packages);
+
 	Ok(())
 }
