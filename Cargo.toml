@@ -1,0 +1,9 @@
+[package]
+name = "repo-comparator"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+librepo-comparator = { git = "https://github.com/qualimock/librepo-comparator.git", branch="master" }
+tokio = { version = "1", features = ["full"] }
+serde_json = "1"
