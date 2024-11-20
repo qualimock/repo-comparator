@@ -40,5 +40,20 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 	let in_b_not_in_a_json = repo_comparator::packages_to_json(&in_b_not_in_a);
 	let newer_packages_json = repo_comparator::packages_to_json(&newer_packages);
 
+	let full_json = serde_json::json!({
+		format!("in_branch_{branch_a_name}_not_in_{branch_b_name}").as_str(): {
+			"length": in_a_not_in_b.len(),
+			"packages": in_a_not_in_b_json
+		},
+		format!("in_branch_{branch_b_name}_not_in_{branch_a_name}").as_str(): {
+			"length": in_b_not_in_a.len(),
+			"packages": in_b_not_in_a_json
+		},
+		format!("packages_newer_in_{branch_a_name}").as_str(): {
+			"length": newer_packages.len(),
+			"packages": newer_packages_json
+		},
+	});
+
 	Ok(())
 }
