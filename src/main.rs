@@ -1,6 +1,7 @@
 use std::env;
 
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
 	let available_repos = vec![
 		"p9",
 		"p10",
@@ -24,4 +25,6 @@ fn main() {
 	if !available_repos.contains(&branch_b_name.as_str()) {
 		panic!("No such repository {branch_b_name}.\nAvailable repos: {available_repos:?}");
 	}
+
+	Ok(())
 }
